@@ -21,6 +21,7 @@ Requires:	apache >= 2.2.0
 BuildRequires:	apache-devel >= 2.2.0
 BuildRequires:	mhash-devel
 Epoch:		1
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 mod_vhost_hash_alias is an Apache HTTPD module that allows mass hosting with
