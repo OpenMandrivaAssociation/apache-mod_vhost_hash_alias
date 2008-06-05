@@ -39,7 +39,7 @@ sed -i s/HashDigest/HashType/ README
 %build
 export APR_CONFIG="%{_bindir}/apr-1-config"
 
-%configure2_5x \
+%configure2_5x --localstatedir=/var/lib \
     --with-apxs2=%{_sbindir}/apxs
 
 %make
