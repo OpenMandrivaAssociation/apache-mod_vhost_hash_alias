@@ -6,7 +6,7 @@
 Summary:	Apache HTTPD module for mass virtual hosting
 Name:		apache-%{mod_name}
 Version:	1.0
-Release:	%mkrel 7
+Release:	%mkrel 8
 Group:		System/Servers
 License:	LGPL
 URL:		http://weuh.org/projects/mod_vhost_hash_alias/
