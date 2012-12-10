@@ -6,7 +6,7 @@
 Summary:	Apache HTTPD module for mass virtual hosting
 Name:		apache-%{mod_name}
 Version:	1.0
-Release:	%mkrel 14
+Release:	14
 Group:		System/Servers
 License:	LGPL
 URL:		http://weuh.org/projects/mod_vhost_hash_alias/
@@ -21,7 +21,6 @@ Requires:	apache >= 2.2.0
 BuildRequires:	apache-devel >= 2.2.0
 BuildRequires:	mhash-devel
 Epoch:		1
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 mod_vhost_hash_alias is an Apache HTTPD module that allows mass hosting with
@@ -40,12 +39,11 @@ sed -i s/HashDigest/HashType/ README
 export APR_CONFIG="%{_bindir}/apr-1-config"
 
 %configure2_5x --localstatedir=/var/lib \
-    --with-apxs2=%{_sbindir}/apxs
+    --with-apxs2=%{_bindir}/apxs
 
 %make
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 install -d %{buildroot}%{_libdir}/apache-extramodules
 install -d %{buildroot}%{_sysconfdir}/httpd/modules.d
@@ -69,13 +67,87 @@ if [ "$1" = "0" ]; then
 fi
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
 %doc AUTHORS ChangeLog README INSTALL NEWS TODO
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/httpd/modules.d/%{mod_conf}
 %attr(0755,root,root) %{_libdir}/apache-extramodules/%{mod_so}
 %{_var}/www/html/addon-modules/*
 
+
+
+
+%changelog
+* Tue May 24 2011 Oden Eriksson <oeriksson@mandriva.com> 1:1.0-14mdv2011.0
++ Revision: 678436
+- mass rebuild
+
+* Thu Dec 02 2010 Paulo Andrade <pcpa@mandriva.com.br> 1:1.0-13mdv2011.0
++ Revision: 605254
+- Rebuild with apr with workaround to issue with gcc type based
+
+* Sun Oct 24 2010 Oden Eriksson <oeriksson@mandriva.com> 1:1.0-12mdv2011.0
++ Revision: 588081
+- rebuild
+
+* Mon Mar 08 2010 Oden Eriksson <oeriksson@mandriva.com> 1:1.0-11mdv2010.1
++ Revision: 516231
+- rebuilt for apache-2.2.15
+
+* Sat Aug 01 2009 Oden Eriksson <oeriksson@mandriva.com> 1:1.0-10mdv2010.0
++ Revision: 406678
+- rebuild
+
+* Tue Jan 06 2009 Oden Eriksson <oeriksson@mandriva.com> 1:1.0-9mdv2009.1
++ Revision: 326271
+- rebuild
+
+* Mon Jul 14 2008 Oden Eriksson <oeriksson@mandriva.com> 1:1.0-8mdv2009.0
++ Revision: 235122
+- rebuild
+
+* Thu Jun 05 2008 Oden Eriksson <oeriksson@mandriva.com> 1:1.0-7mdv2009.0
++ Revision: 215666
+- fix rebuild
+- hard code %%{_localstatedir}/lib to ease backports
+
+* Thu Dec 20 2007 Olivier Blin <oblin@mandriva.com> 1:1.0-6mdv2008.1
++ Revision: 135823
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Sun Sep 09 2007 Oden Eriksson <oeriksson@mandriva.com> 1:1.0-6mdv2008.0
++ Revision: 83413
+- fix deps
+- rebuild
+
+
+* Sat Mar 10 2007 Oden Eriksson <oeriksson@mandriva.com> 1.0-5mdv2007.1
++ Revision: 140772
+- rebuild
+
+* Thu Nov 09 2006 Oden Eriksson <oeriksson@mandriva.com> 1:1.0-4mdv2007.1
++ Revision: 79545
+- Import apache-mod_vhost_hash_alias
+
+* Mon Aug 07 2006 Oden Eriksson <oeriksson@mandriva.com> 1:1.0-4mdv2007.0
+- rebuild
+
+* Fri Dec 16 2005 Oden Eriksson <oeriksson@mandriva.com> 1:1.0-3mdk
+- really rebuilt against apache-2.2.0
+
+* Fri Dec 16 2005 Oden Eriksson <oeriksson@mandriva.com> 1:1.0-2mdk
+- rebuilt against apache-2.2.0
+- fix the config
+
+* Mon Nov 28 2005 Oden Eriksson <oeriksson@mandriva.com> 1:1.0-1mdk
+- fix versioning
+
+* Thu Sep 22 2005 Pascal Terjan <pterjan@mandriva.org> 2.0.54_1.0-2mdk
+- fix URL
+
+* Thu Sep 22 2005 Pascal Terjan <pterjan@mandriva.org> 2.0.54_1.0-1mdk
+- first Mandriva package
 
