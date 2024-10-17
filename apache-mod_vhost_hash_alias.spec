@@ -9,7 +9,7 @@ Version:	1.0
 Release:	14
 Group:		System/Servers
 License:	LGPL
-URL:		http://weuh.org/projects/mod_vhost_hash_alias/
+URL:		https://weuh.org/projects/mod_vhost_hash_alias/
 Source0: 	mod-vhost-hash-alias-%{version}.tar.bz2
 Source1:	%{mod_conf}.bz2
 Requires(pre):	rpm-helper
